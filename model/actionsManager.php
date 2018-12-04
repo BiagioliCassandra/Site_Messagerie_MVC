@@ -11,13 +11,13 @@ function getAction($db, $id) {
     $request->closeCursor();
     return $result;
 }
-function addAction($db, $action) {
+function addAction($db, $form) {
     $request = $db->prepare("INSERT INTO Actions(name, place, date, hour) VALUE(:name, :place, :date, :hour)");
     $result = $request->execute([
-        "name" => $action["name"],
-        "place" => $action["place"],
-        "date" => $action["date"],
-        "hour" => $action["hour"],
+        "name" => $form["name"],
+        "place" => $form["place"],
+        "date" => $form["date"],
+        "hour" => $form["hour"],
     ]);
     $request->closeCursor();
     return $result;
@@ -28,13 +28,13 @@ function deleteAction($db, $id) {
     $request->closeCursor();
     return $result;
 }
-function updateAction($db, $id, $action) {
+function updateAction($db, $id, $form) {
     $request = $db->prepare("UPDATE Actions SET name = :name, place = :place, date = :date, hour = :hour WHERE id = :id");
     $result = $request->execute([
-        "name" => $action["name"],
-        "place" => $action["place"],
-        "date" => $action["date"],
-        "hour" => $action["hour"],
+        "name" => $form["name"],
+        "place" => $form["place"],
+        "date" => $form["date"],
+        "hour" => $form["hour"],
         "id" => $id
         ]);
     $request->closeCursor();
