@@ -1,20 +1,24 @@
 <?php
 require('controller/controller.php');
 
-if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'addVolunteer') {
-        volunteerForm();
+if (isset($_GET["action"])) {
+    if ($_GET["action"] == "addVolunteer") {
+        volunteerAddForm($db, $_POST);
     }
-    if ($_GET['action'] == 'addAction') {
+    if($_GET["action"] == "addAction") {
+        actionAddForm($db, $_POST);
+    }
+    if ($_GET["action"] == "actionAddView") {
         actionForm();
     }
-    elseif ($_GET['action'] == 'post') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            post();
-        }
-        else {
-            echo 'Erreur : aucun identifiant de billet envoyé';
-        }
+    if ($_GET["action"] == "volunteerAddView") {
+        volunteerForm();
+    }
+    if($_GET["action"] == "viewActions") {
+        actionsController($db);
+    }
+    if($_GET["action"] == "delete") {
+        actionDelete($db, $id);
     }
 }
 else {

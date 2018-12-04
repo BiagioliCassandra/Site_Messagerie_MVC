@@ -1,4 +1,4 @@
-<form class="w-50 mx-auto my-5" method="POST" action="controller.php?&action=addAction">
+<form class="w-50 mx-auto my-5" method="POST" action="index.php?&action=addAction">
   <div class="form-group">
     <label for="name">Nom : </label>
     <input type="text" class="form-control" name="name" id="name" placeholder="Dupont">

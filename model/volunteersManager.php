@@ -12,15 +12,15 @@ function getVolunteer($db, $id) {
     return $result;
 }
 function addVolunteer($db, $form) {
-    $request = $db->prepare("INSERT INTO Volunteers(name, firstname, age, comment, availability, street, city) VALUE(:name, :firstname, :age, :comment, :availability, :street, :city)");
+    $request = $db->prepare("INSERT INTO Volunteers(name, firstname, age, street, city, availability, comment) VALUE(:name, :firstname, :age, :street, :city, :availability, :comment)");
     $result = $request->execute([
         "name" => $form["name"],
         "firstname" => $form["firstname"],
         "age" => $form["age"],
-        "comment" => $form["comment"],
-        "availability" => $form["availability"],
         "street" => $form["street"],
         "city" => $form["city"],
+        "availability" => $form["availability"],
+        "comment" => $form["comment"],
     ]);
     $request->closeCursor();
     return $result;

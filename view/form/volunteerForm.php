@@ -1,4 +1,4 @@
-<form class="w-50 mx-auto my-5" method="POST" action="controller.php?&action=addVolunteer">
+<form class="w-50 mx-auto my-5" method="POST" action="index.php?&action=addVolunteer">
   <div class="form-group">
     <label for="name">Nom : </label>
     <input type="text" class="form-control" name="name" id="name" placeholder="Dupont">
@@ -20,11 +20,15 @@
     <input type="text" class="form-control" name="city" id="city" placeholder="Roubaix">
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Disponibilité</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>Disponible</option>
-      <option>Indisponible</option>
+    <label for="availability">Disponibilité</label>
+    <select class="form-control" name="availability" id="availability">
+      <option value="0" selected>Disponible</option>
+      <option value="1">Indisponible</option>
     </select>
+  </div>
+  <div class="form-group">
+    <label for="comment">Commentaire sur le bénévole</label>
+    <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Envoyer</button>
 </form>
