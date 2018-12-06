@@ -5,6 +5,13 @@ require("model/volunteersManager.php");
 //~~~~~~~~~~~~~~~~~~~Functions Volunteer~~~~~~~~~~~~~~~~~~~~~~~~~
 //Function who allows you to view the volunteers
 function volunteersController($db) {
+    function showAvailability($volunteer) {
+        if($volunteer["availability"] == true) { 
+            echo "Disponible";
+        } else {
+            echo "Indisponible";
+        }
+    }
     require("view/volunteersView.php");  
 }
 //Function who allows you to view the form who add the volunteer and give a value for $buttonValue
@@ -33,7 +40,6 @@ function volunteerFormUpdate($db) {
     $buttonValue = "updateVolunteer";
     if(isset($_GET["id"])) {
         $id = htmlspecialchars($_GET["id"]);
-        var_dump($id);
         $volunteer = getVolunteer($db, $id);
     }
     if(!empty($_POST)) {
@@ -94,7 +100,7 @@ function actionFormUpdate($db) {
         foreach ($_POST as $key => $value) {
           $_POST[$key] = htmlspecialchars($value);
         }
-        if(updateAction($db, $id, $_POST)) {
+        if(updateAction($db, $_POST)) {
           header("Location: index.php?message=L'évènement a été modifié dans la base de données!&action=viewActions");
           exit;
         }

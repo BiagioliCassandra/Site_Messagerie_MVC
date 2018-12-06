@@ -33,7 +33,7 @@ $volunteers = getVolunteers($db);
                 <td><?php echo $volunteer["age"]; ?></td>
                 <td><?php echo $volunteer["street"] . " " . $volunteer["city"]; ?></td>
                 <td><?php echo $volunteer["comment"]; ?></td>
-                <td><?php echo $volunteer["availability"]; ?></td>
+                <td><?php showAvailability($volunteer) ?></td>
                 <td>
                 <a class="btn btn-primary" href="index.php?id=<?php echo $volunteer["id"]; ?>&action=updateVolunteer">Modifier</a>
                 <a class="btn btn-primary" href="index.php?id=<?php echo $volunteer["id"]; ?>&action=deleteVolunteer">Supprimer</a>
