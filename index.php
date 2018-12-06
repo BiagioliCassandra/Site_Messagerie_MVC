@@ -1,24 +1,41 @@
 <?php
+require("model/db.php");
 require('controller/controller.php');
 
 if (isset($_GET["action"])) {
-    if ($_GET["action"] == "addVolunteer") {
-        volunteerAddForm($db, $_POST);
+//~~~~~~~~Volunteers~~~~~~~~
+    //Allows you to view the volunteers page
+    if($_GET["action"] == "viewVolunteers") {
+        volunteersController($db);
     }
-    if($_GET["action"] == "addAction") {
-        actionAddForm($db, $_POST);
+    //Add a volonteer to the database
+    if($_GET["action"] == "addVolunteer") {
+        volunteerFormAdd($db);
     }
-    if ($_GET["action"] == "actionAddView") {
-        actionForm();
+    //Update a volonteer to the database    
+    if($_GET["action"] == "updateVolunteer") {
+        volunteerFormUpdate($db);
     }
-    if ($_GET["action"] == "volunteerAddView") {
-        volunteerForm();
-    }
+    //Delete a volonteer to the database
+    if($_GET["action"] == "deleteVolunteer") {
+        volunteerDelete($db);
+    }    
+//~~~~~~~~Actions~~~~~~~~
+    //Allows you to view the actions page
     if($_GET["action"] == "viewActions") {
         actionsController($db);
     }
-    if($_GET["action"] == "delete") {
-        actionDelete($db, $id);
+    //Add a action to the database
+    if($_GET["action"] == "addAction") {
+        actionFormAdd($db);
+    }
+    //Update a action to the database    
+    if($_GET["action"] == "updateAction") {
+        actionFormUpdate($db);
+    }
+    //Delete a action to the database
+    if($_GET["action"] == "deleteAction") {
+        actionDelete($db);
     }
 }
 else {

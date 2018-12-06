@@ -7,7 +7,8 @@ function getVolunteers($db) {
 }
 function getVolunteer($db, $id) {
     $request = $db->prepare("SELECT * FROM Volunteers WHERE id = ?");
-    $result = $request->execute([$id]);
+    $request->execute([$id]);
+    $result = $request->fetch(PDO::FETCH_ASSOC);
     $request->closeCursor();
     return $result;
 }
@@ -20,18 +21,12 @@ function addVolunteer($db, $form) {
         "street" => $form["street"],
         "city" => $form["city"],
         "availability" => $form["availability"],
-        "comment" => $form["comment"],
+        "comment" => $form["comment"]
     ]);
     $request->closeCursor();
     return $result;
 }
-function deleteVolunteer($db, $id) {
-    $request = $db->prepare("DELETE FROM Volunteers WHERE id = ?");
-    $result = $request->execute([$id]);
-    $request->closeCursor();
-    return $result;
-}
-function updateVolunteer($db, $id, $form) {
+function updateVolunteer($db, $form) {
     $request = $db->prepare("UPDATE Volunteers SET name = :name, firstname = :firstname, age = :age, comment = :comment, availability = :availability, street = :street, city = :city WHERE id = :id");
     $result = $request->execute([
         "name" => $form["name"],
@@ -41,8 +36,14 @@ function updateVolunteer($db, $id, $form) {
         "availability" => $form["availability"],
         "street" => $form["street"],
         "city" => $form["city"],
-        "id" => $id
+        "id" => $form["id"]
         ]);
+    $request->closeCursor();
+    return $result;
+}
+function deleteVolunteer($db, $id) {
+    $request = $db->prepare("DELETE FROM Volunteers WHERE id = ?");
+    $result = $request->execute([$id]);
     $request->closeCursor();
     return $result;
 }

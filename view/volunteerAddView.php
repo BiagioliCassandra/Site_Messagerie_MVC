@@ -1,4 +1,6 @@
 <?php 
+$headerTitle = "Ajout d'un bénévole";
+$headerContent = "Le formulaire d'ajout d'un bénévole de l'association";
 include("template/header.php");
 ?>
 <section>

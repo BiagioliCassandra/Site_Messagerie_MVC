@@ -7,7 +7,8 @@ function getActions($db) {
 }
 function getAction($db, $id) {
     $request = $db->prepare("SELECT * FROM Actions WHERE id = ?");
-    $result = $request->execute([$id]);
+    $request->execute([$id]);
+    $result = $request->fetch(PDO::FETCH_ASSOC);
     $request->closeCursor();
     return $result;
 }
@@ -17,14 +18,8 @@ function addAction($db, $form) {
         "name" => $form["name"],
         "place" => $form["place"],
         "date" => $form["date"],
-        "hour" => $form["hour"],
+        "hour" => $form["hour"]
     ]);
-    $request->closeCursor();
-    return $result;
-}
-function deleteAction($db, $id) {
-    $request = $db->prepare("DELETE FROM Actions WHERE id = ?");
-    $result = $request->execute([$id]);
     $request->closeCursor();
     return $result;
 }
@@ -37,6 +32,12 @@ function updateAction($db, $id, $form) {
         "hour" => $form["hour"],
         "id" => $id
         ]);
+    $request->closeCursor();
+    return $result;
+}
+function deleteAction($db, $id) {
+    $request = $db->prepare("DELETE FROM Actions WHERE id = ?");
+    $result = $request->execute([$id]);
     $request->closeCursor();
     return $result;
 }
