@@ -23,14 +23,14 @@ function addAction($db, $form) {
     $request->closeCursor();
     return $result;
 }
-function updateAction($db, $id, $form) {
+function updateAction($db, $form) {
     $request = $db->prepare("UPDATE Actions SET name = :name, place = :place, date = :date, hour = :hour WHERE id = :id");
     $result = $request->execute([
         "name" => $form["name"],
         "place" => $form["place"],
         "date" => $form["date"],
         "hour" => $form["hour"],
-        "id" => $id
+        "id" => $form["id"]
         ]);
     $request->closeCursor();
     return $result;

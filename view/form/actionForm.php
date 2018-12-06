@@ -1,4 +1,5 @@
 <form class="w-50 mx-auto my-5" method="POST" action="index.php?&action=<?php echo $buttonValue; ?>">
+  <input type="hidden" class="form-control" name="id" value="<?php echo (isset($action)?$action["id"]:""); ?>">
   <div class="form-group">
     <label for="name">Nom : </label>
     <input type="text" class="form-control" name="name" id="name" placeholder="Dupont" value="<?php echo (isset($action)?$action["name"]:""); ?>">
