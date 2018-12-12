@@ -1,6 +1,25 @@
 <?php 
 //~~~~~~~~~~~~~~~~~~~Functions Volunteer~~~~~~~~~~~~~~~~~~~~~~~~~
 //Function who allows you to view the volunteers
+function login() {
+    $volunteers = getVolunteers();
+    if(!empty($_POST)) {
+        foreach ($_POST as $key => $value) {
+          $_POST[$key] = htmlspecialchars($value);
+        }
+        foreach ($volunteers as $key => $volunteer) {
+            if($volunteer["pseudo"] === $_POST["pseudo"] && password_verify($_POST["password"], $volunteer["password"])) {
+                session_start();
+                $_SESSION["user"] = $volunteer;
+                header("Location: volunteers?message=Bienvenue!");
+                exit;
+            }
+            header("Location: login?message=Nous n'avons aucun utilisateur avec ce nom ou ce mot de passe");
+            exit;
+            }
+        }
+    require("view/loginView.php");
+}
 function volunteersController() {
     function showAvailability($volunteer) {
         if($volunteer["availability"] == true) { 
@@ -22,11 +41,11 @@ function volunteerFormAdd() {
           }
         }
         if(addVolunteer($_POST)) {
-          header("Location: ../?message=Le bénévole a été ajouté dans la base de données!");
+          header("Location: ../volunteers?message=Le bénévole a été ajouté dans la base de données!");
           exit;
         }
         else {
-          header("Location: ../?message=Echec de l'enregistrement du bénévole dans la base de données");
+          header("Location: ../volunteers?message=Echec de l'enregistrement du bénévole dans la base de données");
           exit;
         }
     }
@@ -44,11 +63,11 @@ function volunteerFormUpdate() {
           $_POST[$key] = htmlspecialchars($value);
         }
         if(updateVolunteer($_POST)) {
-        header("Location: ../?message=Les informations sur le bénévole a été modifié dans la base de données!");
+        header("Location: ../volunteers?message=Les informations sur le bénévole a été modifié dans la base de données!");
         exit;
         }
         else {
-        header("Location: ../?message=Echec de la modification des informations du bénévole dans la base de données");
+        header("Location: ../volunteers?message=Echec de la modification des informations du bénévole dans la base de données");
         exit;
         }
     }
@@ -58,7 +77,7 @@ function volunteerFormUpdate() {
 function volunteerDelete() {
     $id = htmlspecialchars($_GET["id"]);
     if(deleteVolunteer($id)) {
-        header("Location: ../?message=Le bénévole a bien été supprimé de la base de données!");
+        header("Location: ../volunteers?message=Le bénévole a bien été supprimé de la base de données!");
         exit;
     }
     require("view/volunteersView.php");

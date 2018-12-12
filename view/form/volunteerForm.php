@@ -9,6 +9,10 @@
     <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Juliette" value="<?php echo (isset($volunteer)?$volunteer["firstname"]:""); ?>">
   </div>
   <div class="form-group">
+    <label for="pseudo">Pseudo : </label>
+    <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Link" value="<?php echo (isset($volunteer)?$volunteer["pseudo"]:""); ?>">
+  </div>
+  <div class="form-group">
     <label for="age">Age : </label>
     <input type="number" class="form-control" name="age" id="age" placeholder="21" value="<?php echo (isset($volunteer)?$volunteer["age"]:""); ?>">
   </div>
@@ -33,6 +37,13 @@
     <select class="form-control" name="availability" id="availability" value="<?php echo (isset($volunteer)?$volunteer["availability"]:""); ?>">
       <option value="1" selected>Disponible</option>
       <option value="0">Indisponible</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select class="form-control" name="status" id="status" value="<?php echo (isset($volunteer)?$volunteer["status"]:""); ?>">
+      <option value="volunteer" selected>Bénévole</option>
+      <option value="admin">Administrateur</option>
     </select>
   </div>
   <div class="form-group">
