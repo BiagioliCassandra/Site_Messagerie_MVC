@@ -44,7 +44,7 @@ function volunteerFormUpdate() {
           $_POST[$key] = htmlspecialchars($value);
         }
         if(updateVolunteer($_POST)) {
-        header("Location: ../?message=Les informations sur le bénévole a été modifié dans la base de données!&action=viewVolunteers");
+        header("Location: ../?message=Les informations sur le bénévole a été modifié dans la base de données!");
         exit;
         }
         else {
@@ -58,7 +58,7 @@ function volunteerFormUpdate() {
 function volunteerDelete() {
     $id = htmlspecialchars($_GET["id"]);
     if(deleteVolunteer($id)) {
-        header("Location: ../?message=Le bénévole a bien été supprimé de la base de données!&action=viewVolunteers");
+        header("Location: ../?message=Le bénévole a bien été supprimé de la base de données!");
         exit;
     }
     require("view/volunteersView.php");
@@ -69,50 +69,50 @@ function actionsController() {
     require("view/actionsView.php");
 }
 //Function who allows you to view the form who add the action and give a value for $buttonValue
-function actionFormAdd($db) {
+function actionFormAdd() {
     $buttonValue = "actions/add";
     if(!empty($_POST)) {
         foreach ($_POST as $key => $value) {
           $_POST[$key] = htmlspecialchars($value);
         }
-        if(addAction($db, $_POST)) {
-          header("Location: ../?message=L'évènement a été ajouté dans la base de données!&action=viewActions");
+        if(addAction($_POST)) {
+          header("Location: ../actions");
           exit;
         }
         else {
-          header("Location: ../?message=Echec de l'enregistrement de l'évènement dans la base de données");
+          header("Location: ../actions");
           exit;
         }
     }
     require("view/actionAddView.php");
 }
 //Function who allows you to view the form who update the action and give a value for $buttonValue
-function actionFormUpdate($db) {
+function actionFormUpdate() {
     $buttonValue = "actions/update";
     if(isset($_GET["id"])) {
         $id = htmlspecialchars($_GET["id"]);
-        $action = getAction($db, $id);
+        $action = getAction($id);
     }
     if(!empty($_POST)) {
         foreach ($_POST as $key => $value) {
           $_POST[$key] = htmlspecialchars($value);
         }
-        if(updateAction($db, $_POST)) {
-          header("Location: ../?message=L'évènement a été modifié dans la base de données!&action=viewActions");
+        if(updateAction($_POST)) {
+          header("Location: ../actions");
           exit;
         }
         else {
-          header("Location: ../?message=Echec de la modification de l'évènement dans la base de données");
+          header("Location: ../actions");
           exit;
         }
     }
     require("view/actionAddView.php");
 }
 //Function who allows you to delete the action with the id of the action in the db
-function actionDelete($db) {
+function actionDelete() {
     $id = htmlspecialchars($_GET["id"]);
-    if(deleteAction($db, $id)) {
-        header("Location: ../?message=L'évènement a bien été supprimé de la base de données!&action=viewActions");
+    if(deleteAction($id)) {
+        header("Location: ../actions");
         exit;
     }
     require("view/actionsView.php");

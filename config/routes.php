@@ -20,8 +20,7 @@ function getRoutes() {
     ],
     "volunteers/add" => [
       "",
-      "volunteerFormAdd",
-      ["message"=>["string"]]
+      "volunteerFormAdd"
     ],
     "volunteers/update" => [
       "",
@@ -41,20 +40,17 @@ function getRoutes() {
     ],
     "actions/add" => [
       "",
-      "actionFormAdd",
-      ["message"=>["string"]]
+      "actionFormAdd"
     ],
     "actions/update" => [
       "",
       "actionFormUpdate",
-      ["id"=>["integer"]],
-      ["message"=>["string"]]
+      ["id"=>["integer"]]
     ],
     "actions/delete" => [
       "",
       "actionDelete",
-      ["id"=>["integer"]],
-      ["message"=>["string"]]
+      ["id"=>["integer"]]
     ]
   ];
 }
