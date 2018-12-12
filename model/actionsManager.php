@@ -1,12 +1,12 @@
 <?php 
-function getActions($db) {
+function getActions() {
     $db = getDataBase();
     $request = $db->query("SELECT * FROM Actions");
     $result = $request->fetchall(PDO::FETCH_ASSOC);
     $request->closeCursor();
     return $result;
 }
-function getAction($db, $id) {
+function getAction($id) {
     $db = getDataBase();
     $request = $db->prepare("SELECT * FROM Actions WHERE id = ?");
     $request->execute([$id]);
@@ -14,7 +14,7 @@ function getAction($db, $id) {
     $request->closeCursor();
     return $result;
 }
-function addAction($db, $form) {
+function addAction($form) {
     $db = getDataBase();
     $request = $db->prepare("INSERT INTO Actions(name, place, date, hour) VALUE(:name, :place, :date, :hour)");
     $result = $request->execute([
@@ -26,7 +26,7 @@ function addAction($db, $form) {
     $request->closeCursor();
     return $result;
 }
-function updateAction($db, $form) {
+function updateAction($form) {
     $db = getDataBase();
     $request = $db->prepare("UPDATE Actions SET name = :name, place = :place, date = :date, hour = :hour WHERE id = :id");
     $result = $request->execute([
@@ -39,7 +39,7 @@ function updateAction($db, $form) {
     $request->closeCursor();
     return $result;
 }
-function deleteAction($db, $id) {
+function deleteAction($id) {
     $db = getDataBase();
     $request = $db->prepare("DELETE FROM Actions WHERE id = ?");
     $result = $request->execute([$id]);

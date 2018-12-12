@@ -22,11 +22,11 @@
   </div>
   <div class="form-group">
     <label for="email">Mail : </label>
-    <input type="email" class="form-control" name="email" id="email" placeholder="Dupont@gmail.com" value="<?php echo (isset($action)?$action["name"]:""); ?>">
+    <input type="email" class="form-control" name="email" id="email" placeholder="Dupont@gmail.com" value="<?php echo (isset($volunteer)?$volunteer["email"]:""); ?>">
   </div>
   <div class="form-group">
     <label for="password">Mot de passe : </label>
-    <input type="password" class="form-control" name="password" id="password" placeholder="***" value="<?php echo (isset($action)?$action["name"]:""); ?>">
+    <input type="password" class="form-control" name="password" id="password" placeholder="***" value="<?php echo (isset($volunteer)?$volunteer["password"]:""); ?>">
   </div>
   <div class="form-group">
     <label for="availability">Disponibilité</label>
