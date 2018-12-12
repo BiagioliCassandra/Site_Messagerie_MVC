@@ -1,11 +1,13 @@
 <?php 
 function getActions($db) {
+    $db = getDataBase();
     $request = $db->query("SELECT * FROM Actions");
     $result = $request->fetchall(PDO::FETCH_ASSOC);
     $request->closeCursor();
     return $result;
 }
 function getAction($db, $id) {
+    $db = getDataBase();
     $request = $db->prepare("SELECT * FROM Actions WHERE id = ?");
     $request->execute([$id]);
     $result = $request->fetch(PDO::FETCH_ASSOC);
@@ -13,6 +15,7 @@ function getAction($db, $id) {
     return $result;
 }
 function addAction($db, $form) {
+    $db = getDataBase();
     $request = $db->prepare("INSERT INTO Actions(name, place, date, hour) VALUE(:name, :place, :date, :hour)");
     $result = $request->execute([
         "name" => $form["name"],
@@ -24,6 +27,7 @@ function addAction($db, $form) {
     return $result;
 }
 function updateAction($db, $form) {
+    $db = getDataBase();
     $request = $db->prepare("UPDATE Actions SET name = :name, place = :place, date = :date, hour = :hour WHERE id = :id");
     $result = $request->execute([
         "name" => $form["name"],
@@ -36,6 +40,7 @@ function updateAction($db, $form) {
     return $result;
 }
 function deleteAction($db, $id) {
+    $db = getDataBase();
     $request = $db->prepare("DELETE FROM Actions WHERE id = ?");
     $result = $request->execute([$id]);
     $request->closeCursor();

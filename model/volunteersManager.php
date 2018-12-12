@@ -1,19 +1,22 @@
 <?php 
-function getVolunteers($db) {
+function getVolunteers() {
+    $db = getDataBase();
     $request = $db->query("SELECT * FROM Volunteers");
     $result = $request->fetchall(PDO::FETCH_ASSOC);
     $request->closeCursor();
     return $result;
 }
-function getVolunteer($db, $id) {
+function getVolunteer($id) {
+    $db = getDataBase();
     $request = $db->prepare("SELECT * FROM Volunteers WHERE id = ?");
     $request->execute([$id]);
     $result = $request->fetch(PDO::FETCH_ASSOC);
     $request->closeCursor();
     return $result;
 }
-function addVolunteer($db, $form) {
-    $request = $db->prepare("INSERT INTO Volunteers(name, firstname, age, street, city, availability, comment) VALUE(:name, :firstname, :age, :street, :city, :availability, :comment)");
+function addVolunteer($form) {
+    $db = getDataBase();
+    $request = $db->prepare("INSERT INTO Volunteers(name, firstname, age, street, city, availability, comment, email, password) VALUE(:name, :firstname, :age, :street, :city, :availability, :comment, :email, :password)");
     $result = $request->execute([
         "name" => $form["name"],
         "firstname" => $form["firstname"],
@@ -21,13 +24,16 @@ function addVolunteer($db, $form) {
         "street" => $form["street"],
         "city" => $form["city"],
         "availability" => $form["availability"],
-        "comment" => $form["comment"]
+        "comment" => $form["comment"],
+        "email" => $form["email"],
+        "password" => $form["password"]
     ]);
     $request->closeCursor();
     return $result;
 }
-function updateVolunteer($db, $form) {
-    $request = $db->prepare("UPDATE Volunteers SET name = :name, firstname = :firstname, age = :age, comment = :comment, availability = :availability, street = :street, city = :city WHERE id = :id");
+function updateVolunteer($form) {
+    $db = getDataBase();
+    $request = $db->prepare("UPDATE Volunteers SET name = :name, firstname = :firstname, age = :age, comment = :comment, availability = :availability, street = :street, city = :city, email = :email, password = :password WHERE id = :id");
     $result = $request->execute([
         "name" => $form["name"],
         "firstname" => $form["firstname"],
@@ -36,12 +42,15 @@ function updateVolunteer($db, $form) {
         "availability" => $form["availability"],
         "street" => $form["street"],
         "city" => $form["city"],
-        "id" => $form["id"]
+        "id" => $form["id"],
+        "email" => $form["email"],
+        "password" => $form["password"]
         ]);
     $request->closeCursor();
     return $result;
 }
-function deleteVolunteer($db, $id) {
+function deleteVolunteer($id) {
+    $db = getDataBase();
     $request = $db->prepare("DELETE FROM Volunteers WHERE id = ?");
     $result = $request->execute([$id]);
     $request->closeCursor();

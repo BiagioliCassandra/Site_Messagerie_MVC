@@ -8,8 +8,8 @@ $actions = getActions($db);
     <h2 class="text-center">Liste des évènements</h2>
     <ul class="list-group list-group-flush">
     <div class="text-center my-4">
-        <a class="btn btn-primary w-20 text-center" href="index.php?&action=addAction">Ajouter un évènement</a>
-        <a class="btn btn-primary w-20 text-center" href="index.php?&action=viewVolunteers">Voir les bénévoles</a>
+        <a class="btn btn-info w-20 text-center" href="index.php?&action=addAction">Ajouter un évènement</a>
+        <a class="btn btn-info w-20 text-center" href="index.php?&action=viewVolunteers">Voir les bénévoles</a>
     </div>
     <table class="table">
         <thead>
@@ -31,8 +31,8 @@ $actions = getActions($db);
                 <td><?php echo $action["date"]; ?></td>
                 <td><?php echo $action["hour"]; ?></td>
                 <td>
-                <a class="btn btn-primary" href="index.php?id=<?php echo $action["id"]; ?>&action=updateAction">Modifier</a>
-                <a class="btn btn-primary" href="index.php?id=<?php echo $action["id"]; ?>&action=deleteAction">Supprimer</a>
+                <a class="btn btn-info" href="index.php?id=<?php echo $action["id"]; ?>&action=updateAction">Modifier</a>
+                <a class="btn btn-info" href="index.php?id=<?php echo $action["id"]; ?>&action=deleteAction">Supprimer</a>
                 </td>
             </tr>
         <?php 
