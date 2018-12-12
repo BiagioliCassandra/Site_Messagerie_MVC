@@ -1,43 +1,12 @@
 <?php
 require("model/db.php");
-require('controller/controller.php');
+require("config/global.php");
+require("service/router.php");
+require("service/urlManager.php");
+require("service/sessionManager.php");
+require("service/formChecker.php");
+require("model/actionsManager.php");
+require("model/volunteersManager.php");
 
-if (isset($_GET["action"])) {
-//~~~~~~~~Volunteers~~~~~~~~
-    //Allows you to view the volunteers page
-    if($_GET["action"] == "viewVolunteers") {
-        volunteersController($db);
-    }
-    //Add a volonteer to the database
-    if($_GET["action"] == "addVolunteer") {
-        volunteerFormAdd($db);
-    }
-    //Update a volonteer to the database    
-    if($_GET["action"] == "updateVolunteer") {
-        volunteerFormUpdate($db);
-    }
-    //Delete a volonteer to the database
-    if($_GET["action"] == "deleteVolunteer") {
-        volunteerDelete($db);
-    }    
-//~~~~~~~~Actions~~~~~~~~
-    //Allows you to view the actions page
-    if($_GET["action"] == "viewActions") {
-        actionsController($db);
-    }
-    //Add a action to the database
-    if($_GET["action"] == "addAction") {
-        actionFormAdd($db);
-    }
-    //Update a action to the database    
-    if($_GET["action"] == "updateAction") {
-        actionFormUpdate($db);
-    }
-    //Delete a action to the database
-    if($_GET["action"] == "deleteAction") {
-        actionDelete($db);
-    }
-}
-else {
-    volunteersController($db);
-}
+
+route();
