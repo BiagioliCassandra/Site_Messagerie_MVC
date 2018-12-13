@@ -60,3 +60,35 @@ function deleteVolunteer($id) {
     $request->closeCursor();
     return $result;
 }
+function getSortedVolunteers($sortingKeys) {
+    $db = getDataBase();
+    //On démarre la requête avec les paramètres qu'on exécutera stockés dans un tableau
+    $sql = "SELECT * FROM Volunteers";
+    $params = [];
+    //On construit la requête sur la base des paramètres passés dans le post
+    if((isset($sortingKeys["availability"])) || !empty($sortingKeys["availability"]) || (!empty($sortingKeys["city"]))) {
+      $sql .= "WHERE ";
+      if(!empty($sortingKeys["city"])){
+        $sql .= "city = ? ";
+        array_push($params, $sortingKeys["city"]);
+        if(isset($sortingKeys["availability"]) && !empty($sortingKeys["availability"])){
+          $sql .= "AND availability = ? ";
+          array_push($params, $sortingKeys["availability"]);
+        }
+      }
+      else {
+        if(isset($sortingKeys["availability"])){
+          $sql .= "availability = ? ";
+          array_push($params, $sortingKeys["availability"]);
+        }
+      }
+    }
+    //On ordonne le résultat quoiqu'il arrive
+    $sql .= "ORDER BY " . $sortingKeys['sort'];
+    //On réalise la requête de manière classique
+    $query = $db->prepare($sql);
+    $query->execute($params);
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    $query->closeCursor();
+    return $result;
+}

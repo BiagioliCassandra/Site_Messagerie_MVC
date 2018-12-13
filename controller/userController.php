@@ -4,9 +4,7 @@
 function login() {
     $volunteers = getVolunteers();
     if(!empty($_POST)) {
-        foreach ($_POST as $key => $value) {
-          $_POST[$key] = htmlspecialchars($value);
-        }
+        clearForm($_POST);
         foreach ($volunteers as $key => $volunteer) {
             if($volunteer["pseudo"] === $_POST["pseudo"] && password_verify($_POST["password"], $volunteer["password"])) {
                 session_start();
@@ -59,9 +57,7 @@ function volunteerFormUpdate() {
         $volunteer = getVolunteer($id);
     }
     if(!empty($_POST)) {
-        foreach ($_POST as $key => $value) {
-          $_POST[$key] = htmlspecialchars($value);
-        }
+        clearForm($_POST);
         if(updateVolunteer($_POST)) {
         header("Location: ../volunteers?message=Les informations sur le bénévole a été modifié dans la base de données!");
         exit;
@@ -82,57 +78,14 @@ function volunteerDelete() {
     }
     require("view/volunteersView.php");
 }
-//~~~~~~~~~~~~~~~~~~~Functions Actions~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//Function who allows you to view the actions
-function actionsController() {
-    require("view/actionsView.php");
-}
-//Function who allows you to view the form who add the action and give a value for $buttonValue
-function actionFormAdd() {
-    $buttonValue = "actions/add";
-    if(!empty($_POST)) {
-        foreach ($_POST as $key => $value) {
-          $_POST[$key] = htmlspecialchars($value);
-        }
-        if(addAction($_POST)) {
-          header("Location: ../actions");
-          exit;
-        }
-        else {
-          header("Location: ../actions");
-          exit;
+function sortVolunteers() {
+    $volunteers = getSortedVolunteers($_POST);
+    function showAvailability($volunteer) {
+        if($volunteer["availability"] == true) { 
+            echo "Disponible";
+        } else {
+            echo "Indisponible";
         }
     }
-    require("view/actionAddView.php");
-}
-//Function who allows you to view the form who update the action and give a value for $buttonValue
-function actionFormUpdate() {
-    $buttonValue = "actions/update";
-    if(isset($_GET["id"])) {
-        $id = htmlspecialchars($_GET["id"]);
-        $action = getAction($id);
-    }
-    if(!empty($_POST)) {
-        foreach ($_POST as $key => $value) {
-          $_POST[$key] = htmlspecialchars($value);
-        }
-        if(updateAction($_POST)) {
-          header("Location: ../actions");
-          exit;
-        }
-        else {
-          header("Location: ../actions");
-          exit;
-        }
-    }
-    require("view/actionAddView.php");
-}
-//Function who allows you to delete the action with the id of the action in the db
-function actionDelete() {
-    $id = htmlspecialchars($_GET["id"]);
-    if(deleteAction($id)) {
-        header("Location: ../actions");
-        exit;
-    }
-    require("view/actionsView.php");
+    require("view/volunteersView.php");
 }
