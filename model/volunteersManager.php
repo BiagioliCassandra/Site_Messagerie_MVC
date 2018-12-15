@@ -6,6 +6,22 @@ function getVolunteers() {
     $request->closeCursor();
     return $result;
 }
+function loginUser($form) {
+    $db = getDataBase();
+    $request = $db->prepare("SELECT * FROM Volunteers WHERE pseudo = ?");
+    $request->execute([$form["pseudo"]]);
+    $result = $request->fetch(PDO::FETCH_ASSOC);
+    $request->closeCursor();
+    return $result;
+}
+function getID($form) {
+    $db = getDataBase();
+    $request = $db->prepare("SELECT id FROM Volunteers WHERE pseudo = ?");
+    $request->execute([$form]);
+    $result = $request->fetch(PDO::FETCH_ASSOC);
+    $request->closeCursor();
+    return $result;
+}
 function getVolunteer($id) {
     $db = getDataBase();
     $request = $db->prepare("SELECT * FROM Volunteers WHERE id = ?");

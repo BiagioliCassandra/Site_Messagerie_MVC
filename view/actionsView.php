@@ -9,7 +9,7 @@ $actions = getActions();
     <ul class="list-group list-group-flush">
     <div class="text-center my-4">
         <a class="btn btn-info w-20 text-center" href="actions/add">Ajouter un évènement</a>
-        <a class="btn btn-info w-20 text-center" href="index.php">Voir les bénévoles</a>
+        <a class="btn btn-info w-20 text-center" href="volunteersView">Voir les bénévoles</a>
     </div>
     <table class="table">
         <thead>

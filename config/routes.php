@@ -16,21 +16,12 @@ function getRoutes() {
   return [
     "" => [
       "user",
-      "login",
-    ],
-    "login" => [
-      "user",
-      "login",
-      ["message"=>["string"]]
-    ],
-    "volunteers" => [
-      "user",
-      "volunteersController"
+      "login"
     ],
     "volunteers" => [
       "user",
       "volunteersController",
-      ["message"=>["string"]]
+      "status" => "user, admin"
     ],
     "volunteers/sort" => [
       "user",
@@ -52,6 +43,10 @@ function getRoutes() {
       ["id"=>["integer"]],
       ["message"=>["string"]]
     ],
+    "logout" => [
+      "user",
+      "logoutUser"
+    ],
     "actions" => [
       "action",
       "actionsController"
@@ -68,6 +63,20 @@ function getRoutes() {
     "actions/delete" => [
       "action",
       "actionDelete",
+      ["id"=>["integer"]]
+    ],
+    "messages" => [
+      "message",
+      "messages"
+    ],
+    "messages/add" => [
+      "message",
+      "messageAdd",
+      ["id"=>["integer"]]
+    ],
+    "messages/delete" => [
+      "message",
+      "messageDelete",
       ["id"=>["integer"]]
     ]
   ];

@@ -2,22 +2,25 @@
 //~~~~~~~~~~~~~~~~~~~Functions Volunteer~~~~~~~~~~~~~~~~~~~~~~~~~
 //Function who allows you to view the volunteers
 function login() {
-    $volunteers = getVolunteers();
     if(!empty($_POST)) {
         clearForm($_POST);
-        foreach ($volunteers as $key => $volunteer) {
-            if($volunteer["pseudo"] === $_POST["pseudo"] && password_verify($_POST["password"], $volunteer["password"])) {
-                session_start();
-                $_SESSION["user"] = $volunteer;
-                header("Location: volunteers?message=Bienvenue!");
-                exit;
+        if(loginUser($_POST)) {
+            $user = loginUser($_POST);
+            if(password_verify($_POST["password"], $user["password"]))
+            {
+                initializeUserSession($user);
+                if($user["status"] === "admin") {
+                    redirectTo("volunteers");
+                }
+                if($user["status"] === "user") {
+                    redirectTo("messages");
+                }
             }
-            header("Location: login?message=Nous n'avons aucun utilisateur avec ce nom ou ce mot de passe");
-            exit;
-            }
-        }
+        }        
+    } 
     require("view/loginView.php");
 }
+
 function volunteersController() {
     function showAvailability($volunteer) {
         if($volunteer["availability"] == true) { 
@@ -39,11 +42,11 @@ function volunteerFormAdd() {
           }
         }
         if(addVolunteer($_POST)) {
-          header("Location: ../volunteers?message=Le bénévole a été ajouté dans la base de données!");
+          header("Location: ../volunteers");
           exit;
         }
         else {
-          header("Location: ../volunteers?message=Echec de l'enregistrement du bénévole dans la base de données");
+          header("Location: ../volunteers");
           exit;
         }
     }
@@ -59,11 +62,11 @@ function volunteerFormUpdate() {
     if(!empty($_POST)) {
         clearForm($_POST);
         if(updateVolunteer($_POST)) {
-        header("Location: ../volunteers?message=Les informations sur le bénévole a été modifié dans la base de données!");
+        header("Location: ../volunteers");
         exit;
         }
         else {
-        header("Location: ../volunteers?message=Echec de la modification des informations du bénévole dans la base de données");
+        header("Location: ../volunteers");
         exit;
         }
     }
@@ -73,7 +76,7 @@ function volunteerFormUpdate() {
 function volunteerDelete() {
     $id = htmlspecialchars($_GET["id"]);
     if(deleteVolunteer($id)) {
-        header("Location: ../volunteers?message=Le bénévole a bien été supprimé de la base de données!");
+        header("Location: ../volunteers");
         exit;
     }
     require("view/volunteersView.php");
@@ -88,4 +91,8 @@ function sortVolunteers() {
         }
     }
     require("view/volunteersView.php");
+}
+function logoutUser() {
+    logout();
+    redirectTo("");
 }
