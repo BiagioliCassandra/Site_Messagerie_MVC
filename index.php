@@ -7,6 +7,7 @@ require("service/sessionManager.php");
 require("service/formChecker.php");
 require("model/actionsManager.php");
 require("model/volunteersManager.php");
-
+require("model/messagesManager.php");
 
 route();
+?>

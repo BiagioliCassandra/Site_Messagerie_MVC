@@ -42,7 +42,7 @@
   <div class="form-group">
     <label for="status">Status</label>
     <select class="form-control" name="status" id="status" value="<?php echo (isset($volunteer)?$volunteer["status"]:""); ?>">
-      <option value="volunteer" selected>Bénévole</option>
+      <option value="user" selected>Bénévole</option>
       <option value="admin">Administrateur</option>
     </select>
   </div>

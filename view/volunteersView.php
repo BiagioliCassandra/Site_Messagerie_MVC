@@ -9,14 +9,11 @@ $volunteers = getVolunteers();
     <h2 class="text-center">Liste des bénévoles</h2>
     <ul class="list-group list-group-flush">
     <div class="text-center my-4">
+        <a class="btn btn-info" href="messages">Voir ses messages</a>
         <a class="btn btn-info w-20 text-center" href="volunteers/add">Ajouter un bénévole</a>
         <a class="btn btn-info w-20 text-center" href="actions">Voir les évènements</a>
+        <a <?php setHref("logout");  ?> class="btn btn-danger mt-5 mb-5">Se deconnecter</a>
     </div>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Nom/Age
-        </button>
-    </div>    
     <table class="table">
         <thead>
             <tr>
