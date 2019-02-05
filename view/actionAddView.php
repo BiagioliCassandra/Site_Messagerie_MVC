@@ -5,6 +5,7 @@ include("template/header.php");
 ?>
 <section>
     <h2 class="text-center">Formulaire d'ajout d'un évènement<h2>
+    <a class="btn btn-info w-20 text-center" href="actions">Retour</a>
 </section>
 <?php
 require("form/actionForm.php");

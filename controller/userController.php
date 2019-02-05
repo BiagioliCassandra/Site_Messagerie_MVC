@@ -33,7 +33,7 @@ function volunteersController() {
 }
 //Function who allows you to view the form who add the volunteer and give a value for $buttonValue
 function volunteerFormAdd() {
-    $buttonValue = "volunteers/add";
+    $buttonValue = "Ajouter";
     if(!empty($_POST)) {
         foreach ($_POST as $key => $value) {
           $_POST[$key] = htmlspecialchars($value);
@@ -54,7 +54,7 @@ function volunteerFormAdd() {
 }
 //Function who allows you to view the form who update the volunteer and give a value for $buttonValue
 function volunteerFormUpdate() {
-    $buttonValue = "volunteers/update";
+    $buttonValue = "Modifier";
     if(isset($_GET["id"])) {
         $id = htmlspecialchars($_GET["id"]);
         $volunteer = getVolunteer($id);
