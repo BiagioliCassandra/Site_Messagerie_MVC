@@ -26,58 +26,70 @@ function getRoutes() {
     "volunteers/sort" => [
       "user",
       "sortVolunteers",
+      "status" => "user, admin"
     ],
     "volunteers/add" => [
       "user",
-      "volunteerFormAdd"
+      "volunteerFormAdd",
+      "status" => "admin"
     ],
     "volunteers/update" => [
       "user",
       "volunteerFormUpdate",
       ["id"=>["integer"]],
-      ["message"=>["string"]]
+      ["message"=>["string"]],
+      "status" => "admin"
     ],    
     "volunteers/delete" => [
       "user",
       "volunteerDelete",
       ["id"=>["integer"]],
-      ["message"=>["string"]]
+      ["message"=>["string"]],
+      "status" => "admin"
     ],
     "logout" => [
       "user",
-      "logoutUser"
+      "logoutUser", 
+      "status" => "user, admin"
     ],
     "actions" => [
       "action",
-      "actionsController"
+      "actionsController", 
+      "status" => "user, admin"
     ],
     "actions/add" => [
       "action",
-      "actionFormAdd"
+      "actionFormAdd", 
+      "status" => "admin"
     ],
     "actions/update" => [
       "action",
       "actionFormUpdate",
-      ["id"=>["integer"]]
+      ["id"=>["integer"]], 
+      "status" => "admin"
     ],
     "actions/delete" => [
       "action",
       "actionDelete",
-      ["id"=>["integer"]]
+      ["id"=>["integer"]], 
+      "status" => "admin"
     ],
     "messages" => [
       "message",
-      "messages"
+      "messages", 
+      "status" => "user, admin"
     ],
     "messages/add" => [
       "message",
       "messageAdd",
-      ["id"=>["integer"]]
+      ["id"=>["integer"]], 
+      "status" => "user, admin"
     ],
     "messages/delete" => [
       "message",
       "messageDelete",
-      ["id"=>["integer"]]
+      ["id"=>["integer"]], 
+      "status" => "user, admin"
     ]
   ];
 }

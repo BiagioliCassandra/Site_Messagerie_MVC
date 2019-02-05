@@ -3,7 +3,6 @@ function messages() {
     require("view/messagesView.php");
 }
 function messageAdd() {
-    session_start();
     if(!empty($_POST)) {
         //clearForm($_POST);
         $idGetter = getID($_POST["pseudo"]);

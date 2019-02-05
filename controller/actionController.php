@@ -6,7 +6,7 @@ function actionsController() {
 }
 //Function who allows you to view the form who add the action and give a value for $buttonValue
 function actionFormAdd() {
-    $buttonValue = "actions/add";
+    $buttonValue = "Ajouter";
     if(!empty($_POST)) {
         clearForm($_POST);
         if(addAction($_POST)) {
@@ -22,7 +22,7 @@ function actionFormAdd() {
 }
 //Function who allows you to view the form who update the action and give a value for $buttonValue
 function actionFormUpdate() {
-    $buttonValue = "actions/update";
+    $buttonValue = "Modifier";
     if(isset($_GET["id"])) {
         $id = htmlspecialchars($_GET["id"]);
         $action = getAction($id);

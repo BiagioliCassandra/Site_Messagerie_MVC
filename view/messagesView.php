@@ -2,7 +2,6 @@
 $headerTitle = "Liste des messages";
 $headerContent = "La liste des messages de l'utilisateur";  
 include("template/header.php");
-session_start();
 $userID = $_SESSION["user"]["id"]; 
 $messages = getMessages($userID);
 ?>
@@ -11,6 +10,7 @@ $messages = getMessages($userID);
     <ul class="list-group list-group-flush">
     <div class="text-center my-4">
         <a class="btn btn-info w-20 text-center" href="messages/add?id=<?php echo $userID; ?>">Ajouter un message</a>
+        <?php if($_SESSION["user"]["status"] == "admin"){ echo "<a class='btn btn-info w-20 text-center' href='volunteers'>Retour espace Admin</a>"; } ?>
         <a <?php setHref("logout");  ?> class="btn btn-danger mt-5 mb-5">Se deconnecter</a>
     </div>
     <table class="table">
