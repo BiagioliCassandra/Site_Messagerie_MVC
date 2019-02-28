@@ -1,3 +1,4 @@
+<!--The add volunteers page of the association-->
 <?php 
 $headerTitle = "Ajout d'un bénévole";
 $headerContent = "Le formulaire d'ajout d'un bénévole de l'association";

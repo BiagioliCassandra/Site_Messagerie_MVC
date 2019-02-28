@@ -1,18 +1,23 @@
+<!--List of all messages received by the user-->
 <?php 
 $headerTitle = "Liste des messages";
 $headerContent = "La liste des messages de l'utilisateur";  
 include("template/header.php");
+
 $userID = $_SESSION["user"]["id"]; 
+//Retrieve all messages in the database according to the id of the logged in user
 $messages = getMessages($userID);
 ?>
 <section>
-    <h2 class="text-center">Liste des bénévoles</h2>
+    <h2 class="text-center">Liste des messages</h2>
     <ul class="list-group list-group-flush">
     <div class="text-center my-4">
         <a class="btn btn-info w-20 text-center" href="messages/add?id=<?php echo $userID; ?>">Ajouter un message</a>
+        <!--Displays the admin space button if the logged in user is an admin-->
         <?php if($_SESSION["user"]["status"] == "admin"){ echo "<a class='btn btn-info w-20 text-center' href='volunteers'>Retour espace Admin</a>"; } ?>
         <a <?php setHref("logout");  ?> class="btn btn-danger mt-5 mb-5">Se deconnecter</a>
     </div>
+    <!--Creating a tablet for posters to messages of user-->
     <table class="table">
         <thead>
             <tr>
