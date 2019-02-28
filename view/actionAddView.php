@@ -1,3 +1,4 @@
+<!--The add actions page of the association-->
 <?php 
 $headerTitle = "Ajout d'un évènement";
 $headerContent = "Le formulaire d'ajout des actions de l'association";

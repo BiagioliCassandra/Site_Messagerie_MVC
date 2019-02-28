@@ -1,8 +1,11 @@
+<!--The page that lists all the volunteers of the association-->
 <?php 
 $headerTitle = "Liste des bénévoles";
 $headerContent = "La liste des bénévoles de l'association";  
 include("template/header.php");
 include("form/sortForm.php");
+
+//Retrieve all the volunteers found in the database
 $volunteers = getVolunteers();
 ?>
 <section>
@@ -14,6 +17,7 @@ $volunteers = getVolunteers();
         <a class="btn btn-info w-20 text-center" href="actions">Voir les évènements</a>
         <a <?php setHref("logout");  ?> class="btn btn-danger mt-5 mb-5">Se deconnecter</a>
     </div>
+    <!--Creating a tablet for posters to volunteers-->
     <table class="table">
         <thead>
             <tr>
@@ -28,6 +32,7 @@ $volunteers = getVolunteers();
         </thead>
         <tbody>
         <?php 
+        //Loop that displays the volunteers in the table according to the contents of the database
         foreach($volunteers as $key => $volunteer) {
         ?>
             <tr>
@@ -36,6 +41,7 @@ $volunteers = getVolunteers();
                 <td><?php echo $volunteer["age"]; ?></td>
                 <td><?php echo $volunteer["street"] . " " . $volunteer["city"]; ?></td>
                 <td><?php echo $volunteer["comment"]; ?></td>
+                <!--Function that can display available or unavailable instead of 0 or 1-->
                 <td><?php showAvailability($volunteer) ?></td>
                 <td>
                 <a class="btn btn-info" href="volunteers/update?id=<?php echo $volunteer["id"]; ?>">Modifier</a>
@@ -43,6 +49,7 @@ $volunteers = getVolunteers();
                 </td>
             </tr>
         <?php 
+        //End loop
         }
         ?>
         </tbody>

@@ -1,7 +1,9 @@
+<!--The page that lists all the actions of the association-->
 <?php 
 $headerTitle = "Liste des actions";
 $headerContent = "La liste des actions entreprises par les bénévoles de l'association";
 include("template/header.php");
+//I retrieve all actions in database
 $actions = getActions();
 ?>
 <section>
@@ -11,6 +13,7 @@ $actions = getActions();
         <a class="btn btn-info w-20 text-center" href="actions/add">Ajouter un évènement</a>
         <a class="btn btn-info w-20 text-center" href="volunteers">Voir les bénévoles</a>
     </div>
+    <!--Creating a tablet for posters to actions-->
     <table class="table">
         <thead>
             <tr>
@@ -23,6 +26,7 @@ $actions = getActions();
         </thead>
         <tbody>
         <?php 
+        //Loop that displays the actions in the table according to the contents of the database
         foreach($actions as $key => $action) {
         ?>
             <tr>
@@ -36,6 +40,7 @@ $actions = getActions();
                 </td>
             </tr>
         <?php 
+        //End loop
         }
         ?>
         </tbody>

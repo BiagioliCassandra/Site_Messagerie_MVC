@@ -6,6 +6,8 @@ function getVolunteers() {
     $request->closeCursor();
     return $result;
 }
+//Function that retrieves all the information of a user when the nickname entered in the login is the same as the one in the database. 
+//Check the encrypted password in Login
 function loginUser($form) {
     $db = getDataBase();
     $request = $db->prepare("SELECT * FROM Volunteers WHERE pseudo = ?");
@@ -14,6 +16,7 @@ function loginUser($form) {
     $request->closeCursor();
     return $result;
 }
+//Retrieves the volunteer id when his nickname is in the database
 function getID($form) {
     $db = getDataBase();
     $request = $db->prepare("SELECT id FROM Volunteers WHERE pseudo = ?");
@@ -76,12 +79,13 @@ function deleteVolunteer($id) {
     $request->closeCursor();
     return $result;
 }
+//The function of the volunteer sorting form
 function getSortedVolunteers($sortingKeys) {
     $db = getDataBase();
-    //On démarre la requête avec les paramètres qu'on exécutera stockés dans un tableau
+    //We start the query with the parameters we will execute stored in a table
     $sql = "SELECT * FROM Volunteers";
     $params = [];
-    //On construit la requête sur la base des paramètres passés dans le post
+    //We build the query based on the parameters passed in the post
     if((isset($sortingKeys["availability"])) || !empty($sortingKeys["availability"]) || (!empty($sortingKeys["city"]))) {
       $sql .= "WHERE ";
       if(!empty($sortingKeys["city"])){
@@ -99,9 +103,7 @@ function getSortedVolunteers($sortingKeys) {
         }
       }
     }
-    //On ordonne le résultat quoiqu'il arrive
     $sql .= "ORDER BY " . $sortingKeys['sort'];
-    //On réalise la requête de manière classique
     $query = $db->prepare($sql);
     $query->execute($params);
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
