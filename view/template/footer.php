@@ -1,6 +1,6 @@
     </main>
     <footer>
-        <div class="jumbotron jumbotron-fluid text-center bg-info mb-0">
+        <div class="jumbotron jumbotron-fluid text-center bg-success mb-0">
             <p class="lead">Association oeuvrant pour l'écologie</p>
         </div>
     </footer>

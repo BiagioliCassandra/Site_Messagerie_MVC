@@ -13,14 +13,14 @@
     <!-- Place favicon.ico in the root directory -->
 
     <link href="https://fonts.googleapis.com/css?family=Roboto|ZCOOL+XiaoWei" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
     <header>
-        <div class="jumbotron jumbotron-fluid text-center bg-info">
+        <div class="jumbotron jumbotron-fluid text-center bg-success">
             <section class="container">
                 <h1 class="display-4">Sauvons la planète</h1>
             </section>

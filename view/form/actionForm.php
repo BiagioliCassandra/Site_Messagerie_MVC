@@ -16,5 +16,5 @@
     <label for="hour">Heure : </label>
     <input type="time" class="form-control" name="hour" id="hour" value="<?php echo (isset($action)?$action["hour"]:""); ?>">
   </div>
-  <button type="submit" name="action" value="<?php echo $buttonValue; ?>" class="btn btn-info"><?php echo $buttonValue; ?></button>
+  <button type="submit" name="action" value="<?php echo $buttonValue; ?>" class="btn btn-primary"><?php echo $buttonValue; ?></button>
 </form>

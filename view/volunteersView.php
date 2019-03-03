@@ -3,7 +3,7 @@
 $headerTitle = "Liste des bénévoles";
 $headerContent = "La liste des bénévoles de l'association";  
 include("template/header.php");
-include("form/sortForm.php");
+//include("form/sortForm.php");
 
 //Retrieve all the volunteers found in the database
 $volunteers = getVolunteers();
@@ -12,9 +12,9 @@ $volunteers = getVolunteers();
     <h2 class="text-center">Liste des bénévoles</h2>
     <ul class="list-group list-group-flush">
     <div class="text-center my-4">
-        <a class="btn btn-info" href="messages">Voir ses messages</a>
-        <a class="btn btn-info w-20 text-center" href="volunteers/add">Ajouter un bénévole</a>
-        <a class="btn btn-info w-20 text-center" href="actions">Voir les évènements</a>
+        <a class="btn btn-primary" href="messages">Voir ses messages</a>
+        <a class="btn btn-primary w-20 text-center" href="volunteers/add">Ajouter un bénévole</a>
+        <a class="btn btn-primary w-20 text-center" href="actions">Voir les évènements</a>
         <a <?php setHref("logout");  ?> class="btn btn-danger mt-5 mb-5">Se deconnecter</a>
     </div>
     <!--Creating a tablet for posters to volunteers-->
@@ -44,8 +44,8 @@ $volunteers = getVolunteers();
                 <!--Function that can display available or unavailable instead of 0 or 1-->
                 <td><?php showAvailability($volunteer) ?></td>
                 <td>
-                <a class="btn btn-info" href="volunteers/update?id=<?php echo $volunteer["id"]; ?>">Modifier</a>
-                <a class="btn btn-info" href="volunteers/delete?id=<?php echo $volunteer["id"]; ?>">Supprimer</a>
+                <a class="btn btn-primary" href="volunteers/update?id=<?php echo $volunteer["id"]; ?>">Modifier</a>
+                <a class="btn btn-primary" href="volunteers/delete?id=<?php echo $volunteer["id"]; ?>">Supprimer</a>
                 </td>
             </tr>
         <?php 

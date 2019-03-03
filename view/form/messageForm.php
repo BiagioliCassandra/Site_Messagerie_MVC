@@ -12,5 +12,6 @@
         <textarea class="form-control" name="contents" id="contents" rows="3">
         </textarea>
     </div>
-    <button type="submit" class="btn btn-info">Envoyer</button>
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+    <a class="btn btn-primary text-center" href="../messages">Retour</a>
 </form>
